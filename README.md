@@ -12,7 +12,7 @@
 
 # Usage
 
- > ./monty *fileName.m*
+ > ##./monty *fileName.m*
 
   `fileName.m` is the bytecode file.
 
@@ -21,4 +21,4 @@
 
 ## Contributors
 
-    This project done by [mojtabababiker](https://github.com/mojtabababiker) and [ceeflames](https://github.com/ceeflames)
+   This project done by [mojtabababiker](https://github.com/mojtabababiker) and [ceeflames](https://github.com/ceeflames).
