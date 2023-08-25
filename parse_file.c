@@ -72,7 +72,7 @@ int _isempty(char *line)
 {
 	char *temp = line;
 
-	if (*line == '\0')
+	if (*line == '\0' || *line == '#')
 		return (1);
 	while ((*line) != '\n')
 	{

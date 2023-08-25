@@ -12,11 +12,11 @@ instruction_t *isValide(char *opcode)
 
 	void (*opFunctions[])(stack_t **stack, unsigned int line_number) = {
 		push_op, pall_op, pint_op, pop_op, swap_op, add_op,
-		sub_op, mul_op, div_op, mod_op, push_op};
+		sub_op, mul_op, div_op, mod_op, push_op, pchar_op, pstr_op};
 
 	char opCodes[19][11] = {"push", "pall", "pint", "pop",
 			       "swap", "add", "sub", "mul",
-			       "div", "mod", "nop"};
+				"div", "mod", "nop", "pchar", "pstr"};
 	int i = 0;
 
 	crnt_instruction = malloc(sizeof(instruction_t));
@@ -26,7 +26,7 @@ instruction_t *isValide(char *opcode)
 		fprintf(stderr, "Error: malloc failed\n");
 		return (NULL);
 	}
-	while (i < 11)
+	while (i < 13)
 	{
 		if (strcmp(opcode, opCodes[i]) == 0)
 		{

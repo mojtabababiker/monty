@@ -72,5 +72,7 @@ void sub_op(stack_t **stack_head, unsigned int line_number);
 void mul_op(stack_t **stack_head, unsigned int line_number);
 void div_op(stack_t **stack_head, unsigned int line_number);
 void mod_op(stack_t **stack_head, unsigned int line_number);
-
+void pchar_op(stack_t **stack_head, unsigned int line_number);
+void pstr_op(stack_t **stack_head,
+	     __attribute__((unused))unsigned int line_number);
 #endif /** MONTY_H */
