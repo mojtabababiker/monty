@@ -16,7 +16,6 @@ void pchar_op(stack_t **stack_head, unsigned int line_number)
 		/*empty stack*/
 		fprintf(stderr,
 			"L%u: can't pchar, stack empty\n", line_number);
-		freeStack(*stack_head);
 		errNum = 1;
 	}
 	else if (chr < 0 || chr > 127)
@@ -24,7 +23,6 @@ void pchar_op(stack_t **stack_head, unsigned int line_number)
 		/*out of range error*/
 		fprintf(stderr,
 			"L%u: can't pchar, value out of range\n", line_number);
-		freeStack(*stack_head);
 		errNum = 1;
 	}
 	else

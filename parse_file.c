@@ -2,7 +2,7 @@
 #include "monty.h"
 #include "err.h"
 
-int _isempty(char *line);
+int _isempty(char *line, int *line_num);
 
 /**
  * parseFile - open and pars the bytecode file
@@ -38,7 +38,7 @@ int parseFile(char *fileName, stack_t **stack_head)
 			fclose(fHandler);
 			exit(EXIT_FAILURE);
 		}
-		if (_isempty(line))
+		if (_isempty(line, &line_num))
 		{
 			_free(&line, NULL, NULL, NULL);
 			continue;
@@ -46,6 +46,7 @@ int parseFile(char *fileName, stack_t **stack_head)
 		opcode = _strtok(line, ' ', &len);/* tockenize line */
 		if (opcode[0] == '#')
 		{
+			line_num++;
 			_free(&line, &opcode, NULL, NULL);
 			continue;
 		}
@@ -67,17 +68,21 @@ int parseFile(char *fileName, stack_t **stack_head)
 /**
  * _isempty - helper function that check if the line is empty line
  * @line: a pointer to the line to check
+ * @line_num: a pointer to the current lie number
  * Return: 1 if the line is empty, 0 other wise
  * Description: the line is empty if it's contians only spaces or
  *              a null terminator '\0'.
  */
 
-int _isempty(char *line)
+int _isempty(char *line, int *line_num)
 {
 	char *temp = line;
 
 	if (*line == '\0' || *line == '#')
+	{
+		*line_num = *line_num + 1;
 		return (1);
+	}
 	while ((*line) != '\n')
 	{
 		if ((*line) != ' ' && (*line) != '\t')
@@ -88,6 +93,6 @@ int _isempty(char *line)
 		line++;
 	}
 	line = temp;
-
+	*line_num = *line_num + 1;
 	return (1);
 }
