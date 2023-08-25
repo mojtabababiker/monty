@@ -1,5 +1,4 @@
 #include "monty.h"
-#include "grammer.h"
 
 /**
  * stack_push - push the number num to the stack
@@ -9,12 +8,14 @@
  */
 stack_t *stack_push(stack_t **stack_head, int num)
 {
-	stack_t *new = malloc(sizeof(stack_t));
+	stack_t *new;
+
+	new = malloc(sizeof(stack_t));
 
 	if (new == NULL)
 	{
 		fprintf(stderr, "Error: malloc failed\n");
-		freeAll();
+		freeStack(*stack_head);
 		exit(EXIT_FAILURE);
 	}
 	new->n = num;
@@ -39,11 +40,12 @@ stack_t *stack_push(stack_t **stack_head, int num)
 int stack_pop(stack_t **stack_head, int *err)
 {
 	int num = 0;
-	stack_t *temp = *stack_head;
+	stack_t *temp = NULL;
 	stack_t *stack_tail = NULL;
 
-	err = 0;
-	if (!lifo)
+	temp = *stack_head;
+	*err = 0;
+	if (num) /*change with lifo flag*/
 	{
 		if (stack_head == NULL || *stack_head == NULL)
 		{
@@ -59,7 +61,6 @@ int stack_pop(stack_t **stack_head, int *err)
 			(*stack_head)->next = NULL;
 		free(stack_tail);
 		*stack_head = temp;
-		return (num);
 	}
 	else
 	{
@@ -93,6 +94,6 @@ int stack_top(stack_t **stack_head, int *err)
 		*err = -1;
 		return (-1);
 	}
-	num = stack_head->n;
+	num = (*stack_head)->n;
 	return (num);
 }
