@@ -20,8 +20,6 @@ int main(int argc, char *argv[])
 
 	}
 	parseFile(argv[1], &stack_head);
-	printf("before freALl\n");
 	freeStack(stack_head);
-	printf("after freeAllc\n");
 	return (0);
 }
