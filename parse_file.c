@@ -19,9 +19,7 @@ int parseFile(char *fileName, stack_t **stack_head)
 {
 	FILE *fHandler;
 
-	char *line = NULL;
-	char *args = NULL;
-	char *opcode = NULL;
+	char *line = NULL, *args = NULL, *opcode = NULL;
 	size_t len = 0;
 	int line_num = 1;
 
@@ -37,6 +35,7 @@ int parseFile(char *fileName, stack_t **stack_head)
 		{
 			fprintf(stderr, "Error: malloc failed\n");
 			_free(&line, NULL, NULL, stack_head);
+			fclose(fHandler);
 			exit(EXIT_FAILURE);
 		}
 		if (_isempty(line))
@@ -45,6 +44,11 @@ int parseFile(char *fileName, stack_t **stack_head)
 			continue;
 		}
 		opcode = _strtok(line, ' ', &len);/* tockenize line */
+		if (opcode[0] == '#')
+		{
+			_free(&line, &opcode, NULL, NULL);
+			continue;
+		}
 		args = _strtok(NULL, ' ', &len); /*get arg if there are*/
 		_free(&line, NULL, NULL, NULL);
 		if (exec_instruction(&opcode, &args, stack_head, line_num))
