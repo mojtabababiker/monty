@@ -15,8 +15,7 @@ stack_t *stack_push(stack_t **stack_head, int num)
 	if (new == NULL)
 	{
 		fprintf(stderr, "Error: malloc failed\n");
-		freeStack(*stack_head);
-		exit(EXIT_FAILURE);
+		return (NULL);
 	}
 	new->n = num;
 	new->prev = NULL;

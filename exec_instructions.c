@@ -29,6 +29,11 @@ int exec_instruction(char **opcode, char **args,
 			return (-1);
 		}
 		*stack_head = stack_push(stack_head, num);
+		if (*stack_head == NULL)
+		{
+			_free(NULL, opcode, args, stack_head);
+			return (-1);
+		}
 		return (0);
 	}
 	crnt_instruction = isValide(*opcode);
@@ -39,7 +44,6 @@ int exec_instruction(char **opcode, char **args,
 		_free(NULL, opcode, args, stack_head);
 		return (-1);
 	}
-	/* call the function of the current opcode */
 	(crnt_instruction->f)(stack_head, line_num);
 	if (errNum)
 	{
@@ -47,7 +51,6 @@ int exec_instruction(char **opcode, char **args,
 		_free(NULL, opcode, args, stack_head);
 		return (-1);
 	}
-	/* free the current opcode and NULL it */
 	free(crnt_instruction);
 	return (0);
 }

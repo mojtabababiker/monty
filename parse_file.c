@@ -28,7 +28,7 @@ int parseFile(char *fileName, stack_t **stack_head)
 	fHandler = fopen(fileName, "r");
 	if (!fHandler)
 	{
-		fprintf(stderr, "Error: Can't open file <%s>\n", fileName);
+		fprintf(stderr, "Error: Can't open file %s\n", fileName);
 		exit(EXIT_FAILURE);
 	}
 	while (getline(&line, &len, fHandler) != -1)
