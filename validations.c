@@ -26,7 +26,7 @@ instruction_t *isValide(char *opcode)
 		fprintf(stderr, "Error: malloc failed\n");
 		return (NULL);
 	}
-	while (i < 11)
+	while (i < 2)
 	{
 		if (strcmp(opcode, opCodes[i]) == 0)
 		{
